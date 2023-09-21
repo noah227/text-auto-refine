@@ -1,19 +1,3 @@
 # text-auto-refine
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+对输入文本进行去重，例如ip集合、网址集合等 换行符、逗号分隔都支持
