@@ -49,7 +49,7 @@ const specifiedFilterChars = ref("")
 const inputPreProcessedStr = computed(() => {
     let _ = content.value.replaceAll(/[\n\s,]+/g, "\n")
     if (removeVisibleSlashN.value) _ = _.replaceAll("\\n", "\n")
-    if(specifiedFilterChars.value.length) {
+    if (specifiedFilterChars.value.length) {
         const s = specifiedFilterChars.value
         const regex = new RegExp(`(${s.replaceAll(/\s+/g, "|")})`, "g")
         _ = _.replaceAll(regex, "")
@@ -77,6 +77,7 @@ const copyContent = () => {
         alert("已复制到剪切板")
     } catch (e) {
         alert("复制失败，请手动选择复制")
+        alert(e)
     }
 }
 </script>
@@ -86,6 +87,7 @@ const copyContent = () => {
     height: 100%;
     display: flex;
     flex-direction: column;
+    min-width: 520px;
 }
 
 #header, #footer {
@@ -95,8 +97,8 @@ const copyContent = () => {
 #content {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 48%);
+    justify-content: space-around;
     padding: 1rem;
     box-sizing: border-box;
 
@@ -144,6 +146,19 @@ const copyContent = () => {
         flex-grow: 1;
         box-sizing: border-box;
         padding: 3px 6px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #content {
+        display: flex;
+        flex-direction: column;
+
+        > div {
+            flex-grow: 1;
+            flex-shrink: 0;
+            height: auto;
+        }
     }
 }
 </style>
