@@ -8,8 +8,9 @@
                 <div id="utils-input">
                     <span>共输入了{{ inputPreProcessedArr.length }}条</span>
                     <button @click="addSample">加载示例</button>
+                    <button @click="content = ''" :disabled="!content.length">清空内容</button>
                 </div>
-                <textarea v-model="content" placeholder="在这里粘贴或者需要输入去重的内容"></textarea>
+                <textarea v-model.trim="content" placeholder="在这里粘贴或者需要输入去重的内容"></textarea>
             </div>
             <div>
                 <div id="utils-output">
@@ -19,10 +20,10 @@
                     </div>
                     <input v-model.trim="specifiedFilterChars" type="text" placeholder="指定去除的字符内容，空格分隔">
                     <span>去重后有{{ refinedContentArr.length }}条</span>
-                    <button @click="copyContent">复制</button>
+                    <button @click="copyContent" :disabled="!refinedContentStr.length">复制</button>
                 </div>
-                <textarea v-model="refinedContentStr" placeholder="这里将会显示去重后的内容" title="这里将会显示去重后的内容"
-                          readonly></textarea>
+                <textarea v-model="refinedContentStr" placeholder="这里将会显示去重后的内容，空格、换行、逗号都会被作为分割识别符号"
+                          title="这里将会显示去重后的内容" readonly></textarea>
             </div>
         </div>
         <div id="footer">
@@ -46,6 +47,10 @@ const addSample = () => {
 const removeVisibleSlashN = ref(true)
 const specifiedFilterChars = ref("")
 
+/**
+ * 字符串预处理
+ * 已经使用的分隔符：空格，换行符，逗号
+ */
 const inputPreProcessedStr = computed(() => {
     let _ = content.value.replaceAll(/[\n\s,]+/g, "\n")
     if (removeVisibleSlashN.value) _ = _.replaceAll("\\n", "\n")
