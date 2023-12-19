@@ -10,7 +10,7 @@
                     <button @click="addSample">加载示例</button>
                     <button @click="content = ''" :disabled="!content.length">清空内容</button>
                 </div>
-                <textarea v-model.trim="content" placeholder="在这里粘贴或者需要输入去重的内容"></textarea>
+                <textarea v-model.trim="content" placeholder="在这里粘贴或者需要输入去重的内容" autofocus></textarea>
             </div>
             <div>
                 <div id="utils-output">
