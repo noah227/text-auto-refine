@@ -92,7 +92,7 @@ const copyContent = () => {
     height: 100%;
     display: flex;
     flex-direction: column;
-    min-width: 520px;
+    min-width: 420px;
 }
 
 #header, #footer {
@@ -117,6 +117,8 @@ const copyContent = () => {
             display: flex;
             align-items: center;
             padding: 6px;
+            flex-wrap: wrap;
+            line-height: 1.8;
 
             > * {
                 margin-right: 12px;
